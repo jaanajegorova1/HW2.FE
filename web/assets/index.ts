@@ -244,3 +244,36 @@ init().then(() => {
     console.log('APP IS RUNNING ON PORT: ' + PORT);
   });
 });
+
+//login_page login_form
+const joinButton = document.querySelector('.loginbutton') as HTMLButtonElement;
+const usernameInput = document.querySelector('.logininput') as HTMLInputElement;
+
+joinButton.addEventListener('click', async (event: MouseEvent) => {
+  event.preventDefault();
+
+  const username = usernameInput.value.trim();
+
+  if (!username) {
+    alert('Please enter a username');
+    return;
+  }
+
+  try {
+    const response = await fetch(
+      `/api/user?username=${encodeURIComponent(username)}`
+    );
+    const data = await response.json();
+
+    if (!data.user) {
+      alert('User not found or invalid credentials');
+      return;
+    }
+
+    localStorage.setItem('user', JSON.stringify(data.user));
+    window.location.href = '/chat.html';
+  } catch (error) {
+    console.error('Login error:', error);
+    alert('Something went wrong. Please try again later.');
+  }
+});

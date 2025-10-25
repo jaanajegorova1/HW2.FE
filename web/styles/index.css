@@ -1,6 +1,7 @@
 @import url('main/herocat.css');
 @import url('main/join.css');
 @import url('main/main.css');
+@import url('chat/chat.css');
 
 :root {
   background-color: #ffc308;

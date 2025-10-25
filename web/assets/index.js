@@ -1,7 +1,7 @@
 // console.log(1000);
 
-const root = document.getElementById("root");
-const user = localStorage.getItem("user");
+const root = document.getElementById('root');
+const user = localStorage.getItem('user');
 let formMessageElement = null;
 let messagesWrapperDiv = null;
 let inputValue = null;
@@ -10,202 +10,202 @@ let messageConfigBlock = null;
 let messageConfigIsOpened = false;
 
 const initBottomFormMessage = () => {
-	formMessageElement = document.createElement("form");
-	formMessageElement.classList.add("bottom-form");
+  formMessageElement = document.createElement('form');
+  formMessageElement.classList.add('bottom-form');
 
-	inoutMessageElement = document.createElement("input");
-	inoutMessageElement.placeholder = "Enter your message";
-	inoutMessageElement.classList.add("input-message");
-	if (inputValue) inoutMessageElement.value = inputValue;
+  inoutMessageElement = document.createElement('input');
+  inoutMessageElement.placeholder = 'Enter your message';
+  inoutMessageElement.classList.add('input-message');
+  if (inputValue) inoutMessageElement.value = inputValue;
 
-	inoutMessageElement.addEventListener("input", function (event) {
-		const value = event.target.value;
-		inputValue = value;
-	});
+  inoutMessageElement.addEventListener('input', function (event) {
+    const value = event.target.value;
+    inputValue = value;
+  });
 
-	const button = document.createElement("button");
-	button.innerText = "Send";
+  const button = document.createElement('button');
+  button.innerText = 'Send';
 
-	formMessageElement.appendChild(inoutMessageElement);
-	formMessageElement.appendChild(button);
+  formMessageElement.appendChild(inoutMessageElement);
+  formMessageElement.appendChild(button);
 
-	root.appendChild(formMessageElement);
+  root.appendChild(formMessageElement);
 
-	formMessageElement.addEventListener("submit", async function (event) {
-		try {
-			event.preventDefault();
-			const content = event.target[0].value;
+  formMessageElement.addEventListener('submit', async function (event) {
+    try {
+      event.preventDefault();
+      const content = event.target[0].value;
 
-			const username = JSON.parse(user).username;
+      const username = JSON.parse(user).username;
 
-			const messageObject = {
-				username,
-				content,
-			};
+      const messageObject = {
+        username,
+        content,
+      };
 
-			const response = await fetch("/api/message", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(messageObject),
-			});
-			const data = await response.json();
-			console.log("data: ", data);
-			document.location.reload();
-		} catch (error) {
-			console.log("ERROR: ", error);
-		}
-	});
+      const response = await fetch('/api/message', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(messageObject),
+      });
+      const data = await response.json();
+      console.log('data: ', data);
+      document.location.reload();
+    } catch (error) {
+      console.log('ERROR: ', error);
+    }
+  });
 };
 
 const initFetchMessages = () => {
-	return fetch(`/api/messages`)
-		.then((res) => res.json())
-		.then((body) => {
-			console.log("messages: ", body.messages);
+  return fetch(`/api/messages`)
+    .then((res) => res.json())
+    .then((body) => {
+      console.log('messages: ', body.messages);
 
-			const messages = body.messages;
+      const messages = body.messages;
 
-			messagesWrapperDiv = document.createElement("div");
-			messagesWrapperDiv.classList.add("messages-wrapper");
+      messagesWrapperDiv = document.createElement('div');
+      messagesWrapperDiv.classList.add('messages-wrapper');
 
-			root.appendChild(messagesWrapperDiv);
+      root.appendChild(messagesWrapperDiv);
 
-			messages.forEach((message) => {
-				const isUserAuthorOfMessage =
-					message.username == JSON.parse(user).username;
-				const messageDiv = document.createElement("div");
-				messageDiv.classList.add("message");
-				if (isUserAuthorOfMessage) {
-					messageDiv.classList.add("message-of-mine");
+      messages.forEach((message) => {
+        const isUserAuthorOfMessage =
+          message.username == JSON.parse(user).username;
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message');
+        if (isUserAuthorOfMessage) {
+          messageDiv.classList.add('message-of-mine');
 
-					const messageConfigButton = document.createElement("button");
-					messageConfigButton.innerText = "config";
-					messageConfigButton.classList.add("config-button");
-					messageDiv.appendChild(messageConfigButton);
+          const messageConfigButton = document.createElement('button');
+          messageConfigButton.innerText = 'config';
+          messageConfigButton.classList.add('config-button');
+          messageDiv.appendChild(messageConfigButton);
 
-					messageConfigButton.addEventListener("click", function (event) {
-						if (messageConfigIsOpened) destroyMessageConfig();
-						const { clientX: xCoord, clientY: yCoord } = event;
-						console.log("xCoord: ", xCoord, " yCoord: ", yCoord);
+          messageConfigButton.addEventListener('click', function (event) {
+            if (messageConfigIsOpened) destroyMessageConfig();
+            const { clientX: xCoord, clientY: yCoord } = event;
+            console.log('xCoord: ', xCoord, ' yCoord: ', yCoord);
 
-						messageConfigBlock = document.createElement("div");
-						messageConfigBlock.classList.add("message-config");
-						messageConfigBlock.style.top = yCoord + "px";
-						messageConfigBlock.style.left = xCoord + "px";
+            messageConfigBlock = document.createElement('div');
+            messageConfigBlock.classList.add('message-config');
+            messageConfigBlock.style.top = yCoord + 'px';
+            messageConfigBlock.style.left = xCoord + 'px';
 
-						const buttonEdit = document.createElement("button");
-						const buttonDelete = document.createElement("button");
-						buttonEdit.innerText = "Edit";
-						buttonDelete.innerText = "Delete";
+            const buttonEdit = document.createElement('button');
+            const buttonDelete = document.createElement('button');
+            buttonEdit.innerText = 'Edit';
+            buttonDelete.innerText = 'Delete';
 
-						messageConfigBlock.appendChild(buttonEdit);
-						messageConfigBlock.appendChild(buttonDelete);
+            messageConfigBlock.appendChild(buttonEdit);
+            messageConfigBlock.appendChild(buttonDelete);
 
-						buttonEdit.addEventListener("click", function (event) {
-							const currentMessage = message;
-							inputValue = currentMessage.content;
-							inoutMessageElement.value = currentMessage.content;
-						});
+            buttonEdit.addEventListener('click', function (event) {
+              const currentMessage = message;
+              inputValue = currentMessage.content;
+              inoutMessageElement.value = currentMessage.content;
+            });
 
-						root.appendChild(messageConfigBlock);
-						messageConfigIsOpened = !messageConfigIsOpened;
-					});
-				}
+            root.appendChild(messageConfigBlock);
+            messageConfigIsOpened = !messageConfigIsOpened;
+          });
+        }
 
-				const messageP = document.createElement("p");
-				messageP.innerHTML = message.content;
+        const messageP = document.createElement('p');
+        messageP.innerHTML = message.content;
 
-				const messageAvatarImg = document.createElement("img");
-				messageAvatarImg.setAttribute("src", message.avatar);
-				messageAvatarImg.setAttribute("width", 32);
-				messageAvatarImg.setAttribute("height", 32);
+        const messageAvatarImg = document.createElement('img');
+        messageAvatarImg.setAttribute('src', message.avatar);
+        messageAvatarImg.setAttribute('width', 32);
+        messageAvatarImg.setAttribute('height', 32);
 
-				const messageUsernameP = document.createElement("p");
-				messageUsernameP.innerText = message.username;
+        const messageUsernameP = document.createElement('p');
+        messageUsernameP.innerText = message.username;
 
-				messageDiv.appendChild(messageAvatarImg);
-				messageDiv.appendChild(messageUsernameP);
-				messageDiv.appendChild(messageP);
+        messageDiv.appendChild(messageAvatarImg);
+        messageDiv.appendChild(messageUsernameP);
+        messageDiv.appendChild(messageP);
 
-				messagesWrapperDiv.appendChild(messageDiv);
-			});
+        messagesWrapperDiv.appendChild(messageDiv);
+      });
 
-			if (user) initBottomFormMessage();
-		});
+      if (user) initBottomFormMessage();
+    });
 };
 
 const destroyOldContent = () => {
-	root.removeChild(messagesWrapperDiv);
-	root.removeChild(formMessageElement);
-	messagesWrapperDiv = null;
-	formMessageElement = null;
+  root.removeChild(messagesWrapperDiv);
+  root.removeChild(formMessageElement);
+  messagesWrapperDiv = null;
+  formMessageElement = null;
 };
 
 const destroyMessageConfig = () => {
-	root.removeChild(messageConfigBlock);
-	messageConfigBlock = null;
-	messageConfigIsOpened = false;
+  root.removeChild(messageConfigBlock);
+  messageConfigBlock = null;
+  messageConfigIsOpened = false;
 };
 
 if (!user) {
-	const headerNonAuth = document.createElement("header");
-	headerNonAuth.innerText = "The CSS Whisperer";
-	root.appendChild(headerNonAuth);
+  const headerNonAuth = document.createElement('header');
+  headerNonAuth.innerText = 'The CSS Whisperer';
+  root.appendChild(headerNonAuth);
 
-	const buttonForCallingAuthDialog = document.createElement("button");
-	buttonForCallingAuthDialog.innerText = "Log in";
-	headerNonAuth.appendChild(buttonForCallingAuthDialog);
+  const buttonForCallingAuthDialog = document.createElement('button');
+  buttonForCallingAuthDialog.innerText = 'Log in';
+  headerNonAuth.appendChild(buttonForCallingAuthDialog);
 
-	buttonForCallingAuthDialog.addEventListener("click", function (event) {
-		event.preventDefault();
+  buttonForCallingAuthDialog.addEventListener('click', function (event) {
+    event.preventDefault();
 
-		const dialogForAuthWrapper = document.createElement("div");
-		dialogForAuthWrapper.classList.add("dialog-auth-wrapper");
-		const dialogForAuth = document.createElement("div");
-		dialogForAuth.classList.add("dialog-auth");
+    const dialogForAuthWrapper = document.createElement('div');
+    dialogForAuthWrapper.classList.add('dialog-auth-wrapper');
+    const dialogForAuth = document.createElement('div');
+    dialogForAuth.classList.add('dialog-auth');
 
-		const formForAuth = document.createElement("form");
-		const inputForAuth = document.createElement("input");
-		const buttonSubmitAuth = document.createElement("button");
-		buttonSubmitAuth.innerText = "Log in";
-		const buttonLeaveAuth = document.createElement("button");
-		buttonLeaveAuth.innerText = "Close";
+    const formForAuth = document.createElement('form');
+    const inputForAuth = document.createElement('input');
+    const buttonSubmitAuth = document.createElement('button');
+    buttonSubmitAuth.innerText = 'Log in';
+    const buttonLeaveAuth = document.createElement('button');
+    buttonLeaveAuth.innerText = 'Close';
 
-		formForAuth.appendChild(inputForAuth);
-		formForAuth.appendChild(buttonSubmitAuth);
-		formForAuth.appendChild(buttonLeaveAuth);
+    formForAuth.appendChild(inputForAuth);
+    formForAuth.appendChild(buttonSubmitAuth);
+    formForAuth.appendChild(buttonLeaveAuth);
 
-		dialogForAuth.appendChild(formForAuth);
+    dialogForAuth.appendChild(formForAuth);
 
-		dialogForAuthWrapper.appendChild(dialogForAuth);
-		root.appendChild(dialogForAuthWrapper);
+    dialogForAuthWrapper.appendChild(dialogForAuth);
+    root.appendChild(dialogForAuthWrapper);
 
-		formForAuth.addEventListener("submit", async function (event) {
-			try {
-				event.preventDefault();
-				const username = event.target[0].value;
-				console.log("username: ", username);
+    formForAuth.addEventListener('submit', async function (event) {
+      try {
+        event.preventDefault();
+        const username = event.target[0].value;
+        console.log('username: ', username);
 
-				const response = await fetch(`/api/user?username=${username}`);
-				const data = await response.json();
-				console.log("data: ", data);
-				const user = data.user;
-				localStorage.setItem("user", JSON.stringify(user));
-				document.location.reload();
-			} catch (error) {
-				alert(error);
-			}
-		});
-	});
+        const response = await fetch(`/api/user?username=${username}`);
+        const data = await response.json();
+        console.log('data: ', data);
+        const user = data.user;
+        localStorage.setItem('user', JSON.stringify(user));
+        document.location.reload();
+      } catch (error) {
+        alert(error);
+      }
+    });
+  });
 } else {
-	const headerNonAuth = document.createElement("header");
-	headerNonAuth.innerText = "Вы авторизовались";
+  const headerNonAuth = document.createElement('header');
+  headerNonAuth.innerText = 'Вы авторизовались';
 
-	root.appendChild(headerNonAuth);
+  root.appendChild(headerNonAuth);
 
-	// initBottomFormMessage();
+  // initBottomFormMessage();
 }
 
 initFetchMessages();
@@ -251,3 +251,28 @@ initFetchMessages();
 
 // 		if (user) initBottomFormMessage();
 // 	});
+
+//login functionality
+//document.querySelector('.loginbutton').addEventListener('click', async () => {
+//const username = document.querySelector('.logininput').value.trim();
+//if (!username) return alert('Enter username');
+
+// const res = await fetch(`/api/user?username=${encodeURIComponent(username)}`);
+// const data = await res.json();
+// if (!data.user) return alert('User not found');
+
+// localStorage.setItem('user', JSON.stringify(data.user));
+//window.location.href = '/chat.html';
+//});
+
+document.querySelector('.loginbutton').addEventListener('click', () => {
+  const input = document.querySelector('.logininput');
+  const username = input.value.trim();
+
+  if (username) {
+    input.value = '';
+    window.location.href = '/chat.html';
+  } else {
+    alert('Please enter a username');
+  }
+});
