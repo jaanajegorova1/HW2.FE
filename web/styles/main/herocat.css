@@ -1,0 +1,17 @@
+.herocat {
+  display: block;
+  /*flex: 1;*/
+  text-align: center;
+  padding-top: 60px;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.herocat img {
+  /* max-width: 100%;
+  height: auto;
+  width: 815px;
+  height: 810px;*/
+
+  aspect-ratio: 75%;
+}

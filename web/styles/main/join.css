@@ -1,0 +1,86 @@
+.join {
+  background-color: #fff;
+  border: 2px solid black;
+  border-radius: 20px;
+  margin-top: 80px;
+  margin-right: 20px;
+  width: 503px;
+  height: 593px;
+  flex: 1;
+  /*top: 108px; 
+  left: 837px;*/
+}
+
+.header {
+  padding-left: 53px;
+  width: 398px;
+  height: 144px;
+}
+
+.header h1 {
+  font-weight: 700;
+  font-style: bold;
+  font-size: 72px;
+  line-height: 72px;
+  letter-spacing: 0px;
+  text-align: center;
+  vertical-align: middle;
+  color: #1c1c1c;
+}
+
+.text p {
+  padding-top: 24px;
+  margin-left: 20px;
+  width: 398px;
+  height: 56px;
+  size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0px;
+  text-align: center;
+  vertical-align: middle;
+  color: #646464;
+}
+
+.loginform {
+  margin: 32px 20px 32px 24px;
+  width: 100%;
+  max-width: 399px;
+  border: 1px solid lightgray;
+  border-radius: 8px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.logintext {
+  font-family: Inter, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 17px;
+  color: #1c1c1c;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  text-align: left;
+}
+
+.logininput,
+.loginbutton {
+  font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.logininput {
+  background-color: lightgray;
+  border: 1px solid lightgrey;
+}
+
+.loginbutton {
+  background-color: black;
+  color: #fff;
+  border: 1px solid black;
+  margin-top: 20px;
+}
