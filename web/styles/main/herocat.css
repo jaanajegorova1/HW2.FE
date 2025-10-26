@@ -1,6 +1,5 @@
 .herocat {
   display: block;
-  /*flex: 1;*/
   text-align: center;
   padding-top: 60px;
   margin-left: 0;
@@ -8,10 +7,41 @@
 }
 
 .herocat img {
-  /* max-width: 100%;
+  width: 100%;
   height: auto;
-  width: 815px;
-  height: 810px;*/
-
+  max-width: 815px;
   aspect-ratio: 75%;
+}
+
+@media screen and (min-width: 1024px) {
+  .herocat {
+    padding-top: 80px;
+  }
+
+  .herocat img {
+    max-width: 815px;
+    aspect-ratio: 1/1;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .herocat {
+    padding-top: 60px;
+  }
+
+  .herocat img {
+    max-width: 600px;
+    aspect-ratio: 1/1;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .herocat {
+    padding-top: 40px;
+  }
+
+  .herocat img {
+    max-width: 100%;
+    aspect-ratio: auto;
+  }
 }

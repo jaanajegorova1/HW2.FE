@@ -1,6 +1,6 @@
-@import url('main/herocat.css');
-@import url('main/join.css');
 @import url('main/main.css');
+@import url('main/join.css');
+@import url('main/herocat.css');
 @import url('chat/chat.css');
 
 :root {
@@ -17,8 +17,24 @@ h1 {
   padding: 4px;
   border-radius: 8px;
   max-width: 300px;
-
   position: relative;
+}
+
+.message-of-mine {
+  margin-left: 35px;
+}
+
+.config-button {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+}
+
+.message-config {
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  border: 1px solid;
 }
 
 .dialog-auth-wrapper {
@@ -44,19 +60,122 @@ h1 {
   display: block;
 }
 
-.message-of-mine {
-  margin-left: 35px;
+@media screen and (min-width: 1024px) {
+  :root {
+    padding: 60px;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+  }
+
+  .message {
+    max-width: 600px;
+    font-size: 1.1rem;
+    padding: 8px;
+  }
+
+  .message-of-mine {
+    margin-left: 50px;
+  }
+
+  .config-button {
+    top: 10px;
+    right: 10px;
+  }
+
+  .message-config {
+    width: 150px;
+    height: 50px;
+  }
+
+  .dialog-auth {
+    width: 400px;
+    padding: 16px;
+  }
+
+  .dialog-auth button {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
 }
 
-.config-button {
-  position: absolute;
-  top: 6px;
-  right: 6px;
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  :root {
+    padding: 40px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .message {
+    max-width: 500px;
+    font-size: 1rem;
+    padding: 6px;
+  }
+
+  .message-of-mine {
+    margin-left: 45px;
+  }
+
+  .config-button {
+    top: 8px;
+    right: 8px;
+  }
+
+  .message-config {
+    width: 130px;
+    height: 45px;
+  }
+
+  .dialog-auth {
+    width: 350px;
+    padding: 12px;
+  }
+
+  .dialog-auth button {
+    font-size: 0.95rem;
+    padding: 8px 18px;
+  }
 }
 
-.message-config {
-  position: absolute;
-  width: 100px;
-  height: 40px;
-  border: 1px solid;
+@media screen and (max-width: 767px) {
+  :root {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .message {
+    max-width: 100%;
+    font-size: 0.95rem;
+    padding: 4px;
+  }
+
+  .message-of-mine {
+    margin-left: 20px;
+  }
+
+  .config-button {
+    top: 6px;
+    right: 6px;
+  }
+
+  .message-config {
+    width: 100px;
+    height: 40px;
+  }
+
+  .dialog-auth {
+    width: 90%;
+    padding: 10px;
+  }
+
+  .dialog-auth button {
+    font-size: 0.9rem;
+    padding: 6px 14px;
+  }
 }

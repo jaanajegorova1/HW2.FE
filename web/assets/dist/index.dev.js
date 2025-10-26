@@ -1,6 +1,5 @@
 "use strict";
 
-// console.log(1000);
 var root = document.getElementById('root');
 var user = localStorage.getItem('user');
 var formMessageElement = null;
@@ -99,7 +98,6 @@ var initFetchMessages = function initFetchMessages() {
           if (messageConfigIsOpened) destroyMessageConfig();
           var xCoord = event.clientX,
               yCoord = event.clientY;
-          console.log('xCoord: ', xCoord, ' yCoord: ', yCoord);
           messageConfigBlock = document.createElement('div');
           messageConfigBlock.classList.add('message-config');
           messageConfigBlock.style.top = yCoord + 'px';
@@ -110,13 +108,13 @@ var initFetchMessages = function initFetchMessages() {
           buttonDelete.innerText = 'Delete';
           messageConfigBlock.appendChild(buttonEdit);
           messageConfigBlock.appendChild(buttonDelete);
-          buttonEdit.addEventListener('click', function (event) {
+          buttonEdit.addEventListener('click', function () {
             var currentMessage = message;
             inputValue = currentMessage.content;
             inoutMessageElement.value = currentMessage.content;
           });
           root.appendChild(messageConfigBlock);
-          messageConfigIsOpened = !messageConfigIsOpened;
+          messageConfigIsOpened = true;
         });
       }
 
@@ -149,122 +147,65 @@ var destroyMessageConfig = function destroyMessageConfig() {
   messageConfigBlock = null;
   messageConfigIsOpened = false;
 };
-
+/*
 if (!user) {
-  var headerNonAuth = document.createElement('header');
+  const headerNonAuth = document.createElement('header');
   headerNonAuth.innerText = 'The CSS Whisperer';
   root.appendChild(headerNonAuth);
-  var buttonForCallingAuthDialog = document.createElement('button');
+
+  const buttonForCallingAuthDialog = document.createElement('button');
   buttonForCallingAuthDialog.innerText = 'Log in';
   headerNonAuth.appendChild(buttonForCallingAuthDialog);
+
   buttonForCallingAuthDialog.addEventListener('click', function (event) {
     event.preventDefault();
-    var dialogForAuthWrapper = document.createElement('div');
+
+    const dialogForAuthWrapper = document.createElement('div');
     dialogForAuthWrapper.classList.add('dialog-auth-wrapper');
-    var dialogForAuth = document.createElement('div');
+    const dialogForAuth = document.createElement('div');
     dialogForAuth.classList.add('dialog-auth');
-    var formForAuth = document.createElement('form');
-    var inputForAuth = document.createElement('input');
-    var buttonSubmitAuth = document.createElement('button');
+
+    const formForAuth = document.createElement('form');
+    const inputForAuth = document.createElement('input');
+    const buttonSubmitAuth = document.createElement('button');
     buttonSubmitAuth.innerText = 'Log in';
-    var buttonLeaveAuth = document.createElement('button');
+    const buttonLeaveAuth = document.createElement('button');
     buttonLeaveAuth.innerText = 'Close';
+
     formForAuth.appendChild(inputForAuth);
     formForAuth.appendChild(buttonSubmitAuth);
     formForAuth.appendChild(buttonLeaveAuth);
+
     dialogForAuth.appendChild(formForAuth);
     dialogForAuthWrapper.appendChild(dialogForAuth);
     root.appendChild(dialogForAuthWrapper);
-    formForAuth.addEventListener('submit', function _callee2(event) {
-      var username, response, data, _user;
 
-      return regeneratorRuntime.async(function _callee2$(_context2) {
-        while (1) {
-          switch (_context2.prev = _context2.next) {
-            case 0:
-              _context2.prev = 0;
-              event.preventDefault();
-              username = event.target[0].value;
-              console.log('username: ', username);
-              _context2.next = 6;
-              return regeneratorRuntime.awrap(fetch("/api/user?username=".concat(username)));
+    formForAuth.addEventListener('submit', async function (event) {
+      try {
+        event.preventDefault();
+        const username = event.target[0].value;
 
-            case 6:
-              response = _context2.sent;
-              _context2.next = 9;
-              return regeneratorRuntime.awrap(response.json());
-
-            case 9:
-              data = _context2.sent;
-              console.log('data: ', data);
-              _user = data.user;
-              localStorage.setItem('user', JSON.stringify(_user));
-              document.location.reload();
-              _context2.next = 19;
-              break;
-
-            case 16:
-              _context2.prev = 16;
-              _context2.t0 = _context2["catch"](0);
-              alert(_context2.t0);
-
-            case 19:
-            case "end":
-              return _context2.stop();
-          }
-        }
-      }, null, null, [[0, 16]]);
+        const response = await fetch(`/api/user?username=${username}`);
+        const data = await response.json();
+        const user = data.user;
+        localStorage.setItem('user', JSON.stringify(user));
+        document.location.reload();
+      } catch (error) {
+        alert(error);
+      }
     });
   });
-} else {
-  var _headerNonAuth = document.createElement('header');
+}
+*/
 
-  _headerNonAuth.innerText = 'Вы авторизовались';
-  root.appendChild(_headerNonAuth); // initBottomFormMessage();
+
+if (user) {
+  var headerNonAuth = document.createElement('header');
+  headerNonAuth.innerText = 'Вы авторизовались';
+  root.appendChild(headerNonAuth); // initBottomFormMessage();
 }
 
-initFetchMessages(); // setInterval(() => {
-// 	destroyOldContent();
-// 	initFetchMessages();
-// }, 5000);
-// fetch(`/api/messages`)
-// 	.then((res) => res.json())
-// 	.then((body) => {
-// 		console.log("messages: ", body.messages);
-// 		const messages = body.messages;
-// 		const messagesWrapperDiv = document.createElement("div");
-// 		messagesWrapperDiv.classList.add("messages-wrapper");
-// 		root.appendChild(messagesWrapperDiv);
-// 		messages.forEach((message) => {
-// 			const messageDiv = document.createElement("div");
-// 			messageDiv.classList.add("message");
-// 			const messageP = document.createElement("p");
-// 			messageP.innerHTML = message.content;
-// 			const messageAvatarImg = document.createElement("img");
-// 			messageAvatarImg.setAttribute("src", message.avatar);
-// 			messageAvatarImg.setAttribute("width", 32);
-// 			messageAvatarImg.setAttribute("height", 32);
-// 			const messageUsernameP = document.createElement("p");
-// 			messageUsernameP.innerText = message.username;
-// 			// messageDiv.innerText = message.content;
-// 			messageDiv.appendChild(messageAvatarImg);
-// 			messageDiv.appendChild(messageUsernameP);
-// 			messageDiv.appendChild(messageP);
-// 			messagesWrapperDiv.appendChild(messageDiv);
-// 		});
-// 		if (user) initBottomFormMessage();
-// 	});
-//login functionality
-//document.querySelector('.loginbutton').addEventListener('click', async () => {
-//const username = document.querySelector('.logininput').value.trim();
-//if (!username) return alert('Enter username');
-// const res = await fetch(`/api/user?username=${encodeURIComponent(username)}`);
-// const data = await res.json();
-// if (!data.user) return alert('User not found');
-// localStorage.setItem('user', JSON.stringify(data.user));
-//window.location.href = '/chat.html';
-//});
-
+initFetchMessages();
 document.querySelector('.loginbutton').addEventListener('click', function () {
   var input = document.querySelector('.logininput');
   var username = input.value.trim();

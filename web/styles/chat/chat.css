@@ -1,9 +1,257 @@
-body {
-  padding: 30px;
+.chatpage {
+  max-width: 100%;
+  max-height: 100%;
+  background-color: #f7f8f9;
 }
 
-h1 {
-  font-style: bold;
-  text-align: center;
+/*header on chatpage*/
+.user {
+  height: 61px;
+  width: 1440px;
+}
+
+.profile {
+  flex-flow: horizontal;
+  width: 667px;
+  height: 42px;
+  top: 9px;
+  left: 439px;
+  border-bottom: 1px;
+  justify-content: space-between;
+  background-color: #f7f8f9;
+}
+
+.name {
+  flex-flow: horizontal;
+  width: 291px;
+  height: 42px;
+  gap: 23px;
+}
+
+.frame5 {
+  flex-flow: horizontal;
+  width: 184px;
+  height: 42px;
+  gap: 12px;
+}
+
+.profile_picture {
+  width: 42px;
+  height: 42px;
+}
+
+.profile_picture img {
+  width: 42px;
+  height: 42px;
+}
+
+.frame4 {
+  flex-flow: vertical;
+  width: 184px;
+  height: 42px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  gap: 4px;
+}
+
+#name {
+  width: 184px;
+  height: 16px;
+}
+
+#name p {
   color: #1c1c1c;
+  size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+  letter-spacing: 0px;
+  /*float: left;*/ /*temporary*/
+}
+
+#status {
+  height: 16px;
+  width: 178px;
+}
+
+#status p {
+  color: #27ae60;
+  font-weight: 400;
+  font-style: regular;
+  size: 14px;
+  line-height: 16px;
+  letter-spacing: 0px;
+  /*float: left;*/ /*temporary*/
+}
+
+.profileinfo {
+  flex-flow: horizontal;
+  width: 18px;
+  height: 18px;
+}
+
+.profileinfo img {
+  width: 18px;
+  height: 18px;
+  color: #1c1c1c;
+}
+
+.breakline {
+  border-bottom: 1px solid #c2c2c2;
+  color: white;
+  height: 61px;
+  width: 1440px;
+}
+
+/*main chat section*/
+.mainchat {
+  width: 715px;
+  height: 749px;
+  color: #f7f8f9;
+  padding: 40px 24px;
+  gap: 20px;
+  flex-flow: vertical;
+  margin-top: 61px;
+  margin-left: 415px;
+  border: 1px solid #f7f8f9; /*temporary*/
+}
+
+/*chat screen - frame 1481*/
+.frame1481 {
+  flex-flow: vertical;
+  width: 667px;
+  height: 94px;
+  gap: 16px;
+}
+
+.frame1480 {
+  flex-flow: horizontal;
+  width: 520px;
+  height: 94px;
+  border-radius: 12px;
+  padding: 12px;
+  gap: 12px;
+  color: #fff;
+}
+
+.frame1479 {
+  flex-flow: vertical;
+  width: 496px;
+  height: 70px;
+  gap: 16px;
+}
+
+.frame1468 {
+  flex-flow: vertical;
+  width: 496px;
+  height: 70px;
+  gap: 6px;
+}
+
+.frame1467 {
+  flex-flow: horizontal;
+  width: 496px;
+  height: 20px;
+  gap: 16px;
+}
+
+.frame1467 p {
+  width: 496px;
+  height: 44px;
+  /*font: inter;*/ /*Name = Heading 5/Regular*/
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 135%;
+  letter-spacing: 0%;
+  color: #1c1c1c;
+}
+
+/*chat screen - frame 1475*/
+.frame1475 {
+  width: 100px;
+  height: 100px;
+  background-color: aqua;
+  border: 1px solid #c2c2c2;
+}
+
+/*chat screen - frame 43*/
+.frame43 {
+  width: 100px;
+  height: 100px;
+  border: 1px solid #c2c2c2;
+  background-color: rosybrown;
+}
+
+/*chat screen - frame 1482*/
+.frame1482 {
+  width: 100px;
+  height: 100px;
+  background-color: orchid;
+  border: 1px solid #c2c2c2;
+}
+
+/*footer on chat page, and form for writting messages, and their sending*/
+.chatform {
+  flex-flow: horizontal;
+  width: 667px;
+  height: 68px;
+  border-radius: 16px;
+  border: 1px solid #c2c2c2;
+  justify-content: space-between;
+  padding: 12px 24px;
+  color: #fff;
+  align-items: center;
+}
+
+.frame20 {
+  flex-flow: horizontal;
+  width: 551px;
+  height: 72px;
+  gap: 24px;
+}
+
+.writeMessageBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 551px;
+  height: 72px;
+  padding: 0 12px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background-color: #fff;
+}
+
+.writeMessageBlock p {
+  width: 551px;
+  height: 72px;
+  color: #1c1c1c;
+  vertical-align: middle;
+  letter-spacing: 0%;
+  line-height: 150%;
+  font-size: 16px;
+  font-style: regular;
+  font-weight: 400;
+  flex: 1; /*tmr*/
+  margin: 0; /*tmr*/
+  padding-right: 12px; /*tmr*/
+  /*font: inter;*/ /*Name= body/large/regular*/
+}
+
+.frame21 {
+  flex-flow: horizontal;
+  width: 44px;
+  height: 44px;
+  gap: 16px;
+}
+
+.frame21 img {
+  flex-flow: horizontal;
+  width: 44px; /*tmr 100%*/
+  height: 44px; /*tmr 100%*/
+  gap: 8px;
+  padding: 10px;
+  border-radius: 100px;
+  color: #5856d6;
+  /*border-radius: 50%;*/ /*tmr*/
+  cursor: pointer; /*tmr*/
 }

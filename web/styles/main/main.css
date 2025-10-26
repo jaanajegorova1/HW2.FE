@@ -1,8 +1,38 @@
 .main {
-  /*border: 5px solid red;*/
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 593px;
+  flex-wrap: wrap;
+  height: auto;
   width: 100%;
+  padding: 20px;
+  gap: 20px;
+}
+
+@media screen and (min-width: 1024px) {
+  .main {
+    justify-content: center;
+    height: 700px;
+    padding: 40px;
+    gap: 40px;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .main {
+    justify-content: space-around;
+    height: auto;
+    padding: 30px;
+    gap: 30px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .main {
+    flex-direction: column;
+    align-items: stretch;
+    height: auto;
+    padding: 15px;
+    gap: 15px;
+  }
 }
