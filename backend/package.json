@@ -16,8 +16,9 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "tsc && node dist/index.js"
+    "build": "tsc",
+    "start": "npm run build && node dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "body-parser": "^2.2.0",
@@ -31,6 +32,7 @@
   "devDependencies": {
     "@types/express": "^5.0.3",
     "@types/multer": "^2.0.0",
-    "@types/pg": "^8.15.5"
+    "@types/pg": "^8.15.5",
+    "typescript": "^5.9.3"
   }
 }

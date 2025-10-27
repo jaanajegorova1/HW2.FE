@@ -167,10 +167,43 @@
 
 /*chat screen - frame 1475*/
 .frame1475 {
-  width: 100px;
-  height: 100px;
-  background-color: aqua;
+  flex-flow: horizontal;
+  width: 667px;
+  height: 24px;
+  gap: 16px;
+  /*background-color: aqua;
+  border: 1px solid #c2c2c2;*/
+}
+
+.line8 {
+  width: 294px;
+  height: 0px;
   border: 1px solid #c2c2c2;
+  align-items: center;
+}
+
+.frame1475text {
+  width: 47px;
+  height: 24px;
+}
+
+.frame1475text p {
+  font-weight: 400;
+  font-style: regular;
+  font-size: 16px;
+  line-height: 150%;
+  letter-spacing: 0%;
+  text-align: center;
+  vertical-align: middle;
+  background-color: aqua;
+  color: #646464;
+}
+
+.line7 {
+  width: 294px;
+  height: 0px;
+  border: 1px solid #c2c2c2;
+  align-items: center;
 }
 
 /*chat screen - frame 43*/
@@ -181,12 +214,90 @@
   background-color: rosybrown;
 }
 
+.frame1482 {
+  flex-flow: horizontal;
+  width: 520px;
+  height: 98px;
+  border-radius: 12px;
+  padding: 12px;
+  gap: 12px;
+  color: #fff;
+  border: 1px solid #5856d6;
+  align-items: inner;
+}
+
+.frame1479 {
+  flex-flow: vertical;
+  width: 496px;
+  height: 74px;
+  gap: 16px;
+}
+
+.frame1468 {
+  flex-flow: vertical;
+  width: 496px;
+  height: 74px;
+  gap: 6px;
+}
+
+.frame1467 {
+  flex-flow: horizontal;
+  width: 496px;
+  height: 24px;
+  justify-content: space-between;
+}
+
+.frame1467text {
+  width: 45px;
+  height: 20px;
+}
+
+.frame1467text p {
+  font: inter;
+  font-weight: 400;
+  font-style: regular;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0%;
+  color: #646464;
+}
+
+.buttonicon {
+  flex-flow: horizontal;
+  width: 24px;
+  height: 24px;
+  border-radius: 123px;
+  padding: 16px;
+  gap: 10px;
+  motion-rotation: -90grad;
+}
+
+.monotoneadd {
+  width: 24px;
+  height: 24px;
+  motion-rotation: -90grad;
+}
+
+.monotoneadd img {
+  color: #646464;
+  width: 3px;
+  height: 15.75px;
+  top: 10.5px;
+  left: 4.12px;
+  motion-rotation: -90grad;
+}
+
 /*chat screen - frame 1482*/
 .frame1482 {
-  width: 100px;
-  height: 100px;
-  background-color: orchid;
-  border: 1px solid #c2c2c2;
+  flex-flow: horizontal;
+  width: 520px;
+  height: 98px;
+  border-radius: 12px;
+  padding: 12px;
+  gap: 12px;
+  color: #fff;
+  border: 1px solid #5856d6;
+  align-items: inner;
 }
 
 /*footer on chat page, and form for writting messages, and their sending*/

@@ -75,6 +75,9 @@ Initialize project
 npm init
 tsc --init
 
+###Install Typescript
+npm install --save-dev typescript
+
 ### Update tsconfig.json
 
 {
@@ -86,17 +89,32 @@ tsc --init
     "strict": true,
     "esModuleInterop": true
   },
-  "include": ["src"]
-}
+  "include": ["src"]}
 
 ### Compile and run
 tsc
 ###Or add a script to package.json:
 "scripts": {
-  "start": "tsc && node dist/index.js"
-}
+  "start": "tsc && node dist/index.js"}
 ###Then run:
 npm run start
+
+### Docker run:
+docker compose up --build
+docker-compose up -d --build
+
+###Open browsers and check links:
+http://localhost/	 frontend (from folder web/)
+http://localhost/api/	Proxi to backend via nginx
+http://localhost:3001/health	Access to backend
+
+###Check logs
+docker-compose logs backend
+docker-compose logs nginx
+docker-compose logs db
+
+###Stop the project
+docker-compose down
 
 ##Serve Frontend
 npx serve .
