@@ -41,10 +41,10 @@ services:
       - '3001'
     networks: [internal]
     healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost:3001/health']
+      test: ['CMD-SHELL', 'wget -qO- http://127.0.0.1:3001/health || exit 1']
       interval: 5s
       timeout: 3s
-      retries: 20
+      retries: 30
 
   nginx:
     image: nginx:alpine

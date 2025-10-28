@@ -140,7 +140,7 @@ const init = () => {
 
         return resolve(true);
       })
-      .catch(() => reject());
+      .catch((error) => reject(error));
   });
 };
 
@@ -301,7 +301,6 @@ app.get('/messages', async (req, res) => {
     const { rows: messages } = await pool.query(`
       SELECT messages.uuid AS uuid,
 messages.content AS content,
-// messages.created_at AS created_at,
 messages.updated_at AS updated_at,
 users.username AS username,
 users.avatar AS avatar,
@@ -346,9 +345,13 @@ app.post(`/message`, async (req, res) => {
   }
 });
 
-init().then(() => {
+app.get("/health", (_req, res) => res.status(200).send("ok"));
+
+init()
+.then(() => {
   app.listen(PORT, () => {
     // test();
     console.log('APP IS RUNNING ON PORT: ' + PORT);
   });
-});
+})
+ .catch((error) => console.log("ERROR: ", error));

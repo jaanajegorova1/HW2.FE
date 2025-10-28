@@ -136,7 +136,7 @@ const init = () => {
             yield initDB();
             return resolve(true);
         }))
-            .catch(() => reject());
+            .catch((error) => reject(error));
     });
 };
 app.get(`/users`, (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -252,7 +252,6 @@ app.get('/messages', (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const { rows: messages } = yield pool.query(`
       SELECT messages.uuid AS uuid,
 messages.content AS content,
-// messages.created_at AS created_at,
 messages.updated_at AS updated_at,
 users.username AS username,
 users.avatar AS avatar,
@@ -287,9 +286,12 @@ app.post(`/message`, (req, res) => __awaiter(void 0, void 0, void 0, function* (
         res.status(400).send(error.message);
     }
 }));
-init().then(() => {
+app.get("/health", (_req, res) => res.status(200).send("ok"));
+init()
+    .then(() => {
     app.listen(PORT, () => {
         // test();
         console.log('APP IS RUNNING ON PORT: ' + PORT);
     });
-});
+})
+    .catch((error) => console.log("ERROR: ", error));

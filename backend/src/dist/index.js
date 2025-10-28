@@ -144,7 +144,7 @@ var init = function () {
                         return [2 /*return*/, resolve(true)];
                 }
             });
-        }); })["catch"](function () { return reject(); });
+        }); })["catch"](function (error) { return reject(error); });
     });
 };
 app.get("/users", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
@@ -301,7 +301,7 @@ app.get('/messages', function (req, res) { return __awaiter(void 0, void 0, void
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, pool.query("\n      SELECT messages.uuid AS uuid,\nmessages.content AS content,\n// messages.created_at AS created_at,\nmessages.updated_at AS updated_at,\nusers.username AS username,\nusers.avatar AS avatar,\nCASE WHEN messages.created_at = messages.updated_at THEN 'false' ELSE 'true' END AS was_edited\nFROM messages LEFT JOIN users ON users.uuid = messages.author_uuid;\n      ")];
+                return [4 /*yield*/, pool.query("\n      SELECT messages.uuid AS uuid,\nmessages.content AS content,\nmessages.updated_at AS updated_at,\nusers.username AS username,\nusers.avatar AS avatar,\nCASE WHEN messages.created_at = messages.updated_at THEN 'false' ELSE 'true' END AS was_edited\nFROM messages LEFT JOIN users ON users.uuid = messages.author_uuid;\n      ")];
             case 1:
                 messages = (_a.sent()).rows;
                 res.status(200).json({ messages: messages });
@@ -344,9 +344,11 @@ app.post("/message", function (req, res) { return __awaiter(void 0, void 0, void
         }
     });
 }); });
-init().then(function () {
+app.get("/health", function (_req, res) { return res.status(200).send("ok"); });
+init()
+    .then(function () {
     app.listen(PORT, function () {
         // test();
         console.log('APP IS RUNNING ON PORT: ' + PORT);
     });
-});
+})["catch"](function (error) { return console.log("ERROR: ", error); });

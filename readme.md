@@ -96,12 +96,26 @@ tsc
 ###Or add a script to package.json:
 "scripts": {
   "start": "tsc && node dist/index.js"}
+
 ###Then run:
 npm run start
 
 ### Docker run:
 docker compose up --build
 docker-compose up -d --build
+###Run docker, and it will run also: db, backend, nginx
+docker compose up -d
+
+###Check that for project start, your location like this:
+cd C:\Users\jaana\OneDrive\Desktop\java-rush-chat-backend
+
+###Check that all containers work correctly:
+docker ps
+##Here you will see
+jr-postgres — PostgreSQL
+jr-backend — your backend
+jr-nginx — nginx-proxy
+
 
 ###Open browsers and check links:
 http://localhost/	 frontend (from folder web/)
@@ -113,8 +127,29 @@ docker-compose logs backend
 docker-compose logs nginx
 docker-compose logs db
 
-###Stop the project
+###Check all logs
+docker compose logs -f
+
+###Restart nginx
+docker compose restart nginx
+
+docker compose restart nginx
+Открой в браузере:
+
+###Open browser, main page:
+http://localhost
+
+###second pege, after login:
+http://localhost/chat.html
+
+###Stop the project with deleting all containers
 docker-compose down
+
+###Stop docker without deleting
+docker compose stop
+
+###Start docker
+docker compose start
 
 ##Serve Frontend
 npx serve .
