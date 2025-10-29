@@ -3,26 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Chat Page</title>
     <link rel="stylesheet" href="/styles/index.css" />
     <link rel="stylesheet" href="/styles/chat.css" />
   </head>
   <body class="chatpage">
-    <!--header on chatpage-->
     <div class="user">
       <div class="profile">
-        <div class="name">
-          <div class="frame5">
-            <div class="profile_picture">
-              <img src="/assets/img/ellipse1.jpg" alt="ellipse1-image" />
+        <div class="profile-left">
+          <div class="profile_picture">
+            <img src="/assets/img/ellipse1.jpg" alt="ellipse1-image" />
+          </div>
+          <div class="frame4">
+            <div id="name">
+              <p>The CSS Whisperer</p>
             </div>
-            <div class="frame4">
-              <div id="name">
-                <p>The CSS Whisperer<br /></p>
-              </div>
-              <div id="status">
-                <p>Online</p>
-              </div>
+            <div id="status">
+              <p>Online</p>
             </div>
           </div>
         </div>
@@ -31,33 +28,21 @@
         </div>
       </div>
     </div>
-
     <!--breakline-->
     <div class="breakline"></div>
-
     <!--main section for chat-->
     <section class="sectionchat">
       <div class="mainchat">
-        <!--chat screen - frame 1481-->
+        <!-- Chat messages -->
         <div class="frame1481">
-          <div class="frame1480">
-            <div class="frame1479">
-              <div class="frame1468">
-                <div class="frame1467"></div>
-                <p id="text">Guys,...</p>
-              </div>
-            </div>
-          </div>
+          <p>Guys,...</p>
         </div>
-
         <!--chat screen - frame 1475-->
         <div class="frame1475">
           <div class="line8"></div>
           <div class="frame1475text"><p>October 26th, 2025</p></div>
           <div class="line7"></div>
         </div>
-
-        <!--chat screen - frame 43-->
         <div class="frame43">
           <div class="frame1482">
             <div class="frame1479">
@@ -85,19 +70,13 @@
             </div>
           </div>
         </div>
-
         <!--chat screen - frame 1482-->
         <div class="frame1482"></div>
-
         <!--chat screen - chatform-->
         <div class="chatform">
           <div class="frame20">
             <div class="writeMessageBlock">
-              <p>
-                And here I was, proud of finally getting display: grid;
-                place-items: center; to work... Did I miss a memo on using three
-                methods simultaneously? My head is spinning.
-              </p>
+              <textarea placeholder="Write a message ..." rows="1"></textarea>
             </div>
           </div>
           <div class="frame21">
@@ -106,5 +85,77 @@
         </div>
       </div>
     </section>
+    <!-- profile info button click -->
+    <div class="login-overlay" id="loginOverlay" style="display: none">
+      <div class="login-form">
+        <div class="form-wrapper">
+          <div class="username-field">
+            <label for="username">Enter your name</label>
+            <input type="text" id="username" placeholder="user123" />
+          </div>
+          <div class="actions">
+            <button id="closeLogin">Close</button>
+            <button id="logout">Logout</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- imput field handling in profile info -->
+    <script>
+      (() => {
+        const profileBtn = document.getElementById('vector');
+        const loginOverlay = document.getElementById('loginOverlay');
+        const usernameInput = document.getElementById('username');
+        const closeBtn = document.getElementById('closeLogin');
+
+        profileBtn.addEventListener('click', () => {
+          loginOverlay.style.display = 'flex';
+          usernameInput.value = '';
+          usernameInput.focus();
+        });
+
+        closeBtn.addEventListener('click', () => {
+          loginOverlay.style.display = 'none';
+        });
+
+        usernameInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            loginOverlay.style.display = 'none';
+          }
+        });
+      })();
+    </script>
+    <!-- handling of Close button in profile info -->
+    <script>
+      (() => {
+        const profileBtn = document.getElementById('vector');
+        const loginOverlay = document.getElementById('loginOverlay');
+        const usernameInput = document.getElementById('username');
+        const closeBtn = document.getElementById('closeLogin');
+        const logoutBtn = document.getElementById('logout');
+
+        profileBtn.addEventListener('click', () => {
+          loginOverlay.style.display = 'flex';
+          usernameInput.value = '';
+          usernameInput.focus();
+        });
+
+        closeBtn.addEventListener('click', () => {
+          loginOverlay.style.display = 'none';
+        });
+
+        usernameInput.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            loginOverlay.style.display = 'none';
+          }
+        });
+
+        logoutBtn.addEventListener('click', () => {
+          window.location.href = '/login.html';
+        });
+      })();
+    </script>
   </body>
 </html>

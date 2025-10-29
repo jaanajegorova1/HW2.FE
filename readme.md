@@ -104,10 +104,33 @@ npm run start
 docker compose up --build
 docker-compose up -d --build
 ###Run docker, and it will run also: db, backend, nginx
+docker compose down (id docker already allocated)
+docker compose build
 docker compose up -d
 
 ###Check that for project start, your location like this:
 cd C:\Users\jaana\OneDrive\Desktop\java-rush-chat-backend
+
+##-----------------------------------------
+###Check that all is clean
+docker compose down -v
+
+###check that nothing else exists, all removed
+docker ps -a
+
+###Stop project and then remove
+docker stop java-rush-proj-bd1 java-rush-proj-bd
+docker rm java-rush-proj-bd1 java-rush-proj-b
+
+###Run docker
+docker compose up
+
+###Open browser, main page:
+http://localhost
+
+###Else you can check status of containers
+docker compose ps
+##-----------------------------------------
 
 ###Check that all containers work correctly:
 docker ps
@@ -132,9 +155,6 @@ docker compose logs -f
 
 ###Restart nginx
 docker compose restart nginx
-
-docker compose restart nginx
-Открой в браузере:
 
 ###Open browser, main page:
 http://localhost

@@ -1,0 +1,24 @@
+{
+  "name": "java-rush-chat-backend",
+  "version": "1.0.0",
+  "description": "_(Currently, only part of the task is implemented)_",
+  "homepage": "https://github.com/jaanajegorova1/HW2.FE#readme",
+  "bugs": {
+    "url": "https://github.com/jaanajegorova1/HW2.FE/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jaanajegorova1/HW2.FE.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {}
+}
